@@ -3,6 +3,7 @@ package cat.tecnocampus.notes.apiRest;
 import cat.tecnocampus.notes.application.DTOs.NoteLabDTO;
 import cat.tecnocampus.notes.application.DTOs.UserLabDTO;
 import cat.tecnocampus.notes.application.NotesService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,17 +37,17 @@ public class RestApi {
     }
 
     @PostMapping("/users/{email}/notes")
-    public void createNewNote(@PathVariable String email, @RequestBody NoteLabDTO notelab) {
+    public void createNewNote(@PathVariable String email, @Valid @RequestBody NoteLabDTO notelab) {
         notesService.createNewNote(email, notelab.getTitle(), notelab.getContent());
     }
 
     @PutMapping("/users/{email}/notes")
-    public void editNote(@PathVariable String email, @RequestBody NoteLabDTO notelab) {
+    public void editNote(@PathVariable String email, @Valid @RequestBody NoteLabDTO notelab) {
         notesService.editNote(email, notelab.getTitle(), notelab.getContent());
     }
 
     @PostMapping("/users")
-    public void createNewUser(@RequestBody UserLabDTO userLab) {
+    public void createNewUser(@Valid @RequestBody UserLabDTO userLab) {
         notesService.createNewUser(userLab);
     }
 

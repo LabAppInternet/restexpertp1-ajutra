@@ -1,11 +1,15 @@
 package cat.tecnocampus.notes.application.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
 public class NoteLabDTO {
 
+    @Size(min=3, max=255)
+    @Pattern(regexp = "^[a-zA-Z]+$", message = "must contain only letters")
     private String title;
     private String content;
 

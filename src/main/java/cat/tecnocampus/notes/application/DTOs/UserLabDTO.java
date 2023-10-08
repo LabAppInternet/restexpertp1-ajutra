@@ -1,9 +1,6 @@
 package cat.tecnocampus.notes.application.DTOs;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,10 +10,16 @@ public class UserLabDTO {
 
     private String username;
 
+    @Size(min = 3, message = "size must be greater than 3")
+    @Pattern(regexp = "^[A-Z][a-z]* ?[A-Za-z]*$", message = "must begin with a capital letter and contain only letters")
     private String name;
 
+    @Size(min = 3, message = "size must be greater than 3")
+    @Pattern(regexp = "^[A-Z][a-z]* ?[A-Za-z]*$", message = "must begin with a capital letter and contain only letters")
     private String secondName;
 
+    @Email
+    @NotEmpty
     private String email;
 
     private final Map<String, NoteLabDTO> ownedNotes;
@@ -51,7 +54,7 @@ public class UserLabDTO {
     }
 
     public List<NoteLabDTO> getOwnedNotes() {
-        return new ArrayList<NoteLabDTO>(ownedNotes.values());
+        return new ArrayList<>(ownedNotes.values());
     }
 
     public void setName(String name) {

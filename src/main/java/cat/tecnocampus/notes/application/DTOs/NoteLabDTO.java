@@ -1,12 +1,15 @@
 package cat.tecnocampus.notes.application.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.hypersistence.tsid.TSID;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
 public class NoteLabDTO {
+    private TSID id;
 
     @Size(min=3, max=255)
     @Pattern(regexp = "^[a-zA-Z]+$", message = "must contain only letters")
@@ -22,12 +25,10 @@ public class NoteLabDTO {
     public NoteLabDTO() {
     }
 
-    /*
+    @JsonIgnore //Point 5, stack overflow caused by recursion, ignoring this attribute to avoid mentioned recursion
     public UserLabDTO getOwner() {
         return owner;
     }
-
-     */
 
     public void setOwner(UserLabDTO owner) {
         this.owner = owner;
@@ -73,4 +74,11 @@ public class NoteLabDTO {
         this.dateEdit = dateEdit;
     }
 
+    public void setId(TSID id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id.toString();
+    }
 }

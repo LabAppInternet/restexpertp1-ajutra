@@ -1,6 +1,9 @@
 package cat.tecnocampus.notes.application.DTOs;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -2,6 +2,7 @@ package cat.tecnocampus.notes.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.hypersistence.tsid.TSID;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -10,8 +11,9 @@ import java.util.List;
 
 @Entity
 public class NoteLab {
-
     @Id
+    private TSID id;
+
     private String title;
     private String content;
 
@@ -39,6 +41,7 @@ public class NoteLab {
     }
 
     public NoteLab(String title, String content) {
+        this.id = TSID.fast();
         this.title = title;
         this.content = content;
         dateCreation = LocalDateTime.now();
@@ -48,6 +51,11 @@ public class NoteLab {
     public void addAllowedUser(UserLab userLab) {
         allowedUsers.add(userLab);
     }
+
+    public TSID getId() {
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }

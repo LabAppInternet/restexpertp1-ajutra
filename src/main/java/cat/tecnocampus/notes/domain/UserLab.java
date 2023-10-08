@@ -27,7 +27,7 @@ public class UserLab {
     })
     @JoinTable(name = "note_allowed",
             joinColumns = @JoinColumn(name = "allowed_email"),
-            inverseJoinColumns = @JoinColumn(name = "note_title")
+            inverseJoinColumns = @JoinColumn(name = "note_id")
     )
     private final Map<String, NoteLab> allowedEditNotes;
 
